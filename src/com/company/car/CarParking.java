@@ -5,9 +5,8 @@ import java.util.List;
 
 public class CarParking {
     private List<Car> cars = new ArrayList();
-    private int p = 1000;
-    private  int t = 1500;
-
+    private int pass = 1000;
+    private int truck = 1500;
 
 
     public void addCar(Car car) {
