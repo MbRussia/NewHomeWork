@@ -1,7 +1,7 @@
 package com.company.ice_creame_shop;
 
-import com.company.ice_creame_shop.exception.ExceptionTopping;
 import com.company.ice_creame_shop.select_type.BoxIceCreameType;
+import com.company.ice_creame_shop.select_type.IceCreameType;
 import com.company.ice_creame_shop.select_type.ToppingType;
 
 import java.util.ArrayList;
@@ -9,11 +9,29 @@ import java.util.List;
 
 public class IceCreameAbstract implements IceCreame {
     private List<ToppingType> toppings = new ArrayList();
-    private ToppingType toppingType;
+    private PriceIceCreame priceIceCreame = new PriceIceCreame();
     private BoxIceCreameType boxIceCreameType;
+    private IceCreameType iceCreameType;
+
+    public void setBoxIceCreameType(BoxIceCreameType boxIceCreameType) {
+        this.boxIceCreameType = boxIceCreameType;
+    }
+
+    public String getBoxIceCreameType() {
+        if (boxIceCreameType != null) {
+            return boxIceCreameType.name();
+        }
+        return null;
+    }
+    public String getIceCreameType() {
+        if (iceCreameType != null) {
+            return iceCreameType.name();
+        }
+        return null;
+    }
 
     @Override
-    public void addTopping(ToppingType toppingType) throws ExceptionTopping {
+    public void addTopping(ToppingType toppingType) {
         toppings.add(toppingType);
     }
 
@@ -24,13 +42,33 @@ public class IceCreameAbstract implements IceCreame {
 
     @Override
     public int fullPrice() {
-    PriceIceCreame priceIceCreame = new PriceIceCreame();
-    priceIceCreame.setAllPrice(boxIceCreameType.getPrice());
-        return 0;
+        priceIceCreame.setAllPrice(boxIceCreameType.getPrice());
+        priceIceCreame.setAllPrice(iceCreameType.getPrice());
+        if (!toppings.isEmpty()) {
+            for (int i = 0; i < toppings.size(); i++) {
+                priceIceCreame.setAllPrice(toppings.get(i).getPrice());
+            }
+        }
+        return priceIceCreame.getAllPrice();
     }
 
     @Override
-    public void boxIceCreameType() {
+    public void addIceCreameType(IceCreameType iceCreameType) {
+    this.iceCreameType = iceCreameType;
+    }
 
+
+
+    @Override
+    public int getTopping() {
+        return toppings.size();
+    }
+
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer();
+        sb.append("Топпинг").append(toppings);
+        return sb.toString();
     }
 }

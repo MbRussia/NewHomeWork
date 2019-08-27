@@ -1,7 +1,7 @@
 package com.company.ice_creame_shop.select_type;
 
 public enum BoxIceCreameType {
-    CUP(0), HORN(0);
+    CUP(10), HORN(10);
     private int price;
 
     BoxIceCreameType(int price) {
