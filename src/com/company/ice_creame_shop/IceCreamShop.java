@@ -17,34 +17,34 @@ public class IceCreamShop {
         boolean startMenu = true;
         while (startMenu) {
             try {
-                System.out.println("Для покупки мороженного выберите из списка раздел\n" +
-                        "1. Стандарное мороженное\n" +
-                        "2. Мороженное сюрприз\n" +
-                        "3. Мороженное Экстра\n" +
-                        "4. Выход\n");
-                int input = scn.nextInt();
+            System.out.println("Для покупки мороженного выберите из списка раздел\n" +
+                    "1. Стандарное мороженное\n" +
+                    "2. Мороженное сюрприз\n" +
+                    "3. Мороженное Экстра\n" +
+                    "4. Выход\n");
+            int input = scn.nextInt();
 
-                switch (input) {
-                    case 1:
-                        standartIceCreame();
-                        startMenu = false;
-                        break;
-                    case 2:
-                        surpriseIceCream();
-                        startMenu = false;
-                        break;
-                    case 3:
-                        extraIceCreame();
-                        startMenu = false;
-                        break;
-                    case 4:
-                        startMenu = false;
-                        break;
+            switch (input) {
+                case 1:
+                    standartIceCreame();
+                    startMenu = false;
+                    break;
+                case 2:
+                    surpriseIceCream();
+                    startMenu = false;
+                    break;
+                case 3:
+                    extraIceCreame();
+                    startMenu = false;
+                    break;
+                case 4:
+                    startMenu = false;
+                    break;
 
-                    default:
-                        System.out.println("Выбран варинт не из списка");
-                        break;
-                }
+                default:
+                    System.out.println("Выбран варинт не из списка");
+                    break;
+            }
             } catch (Throwable e) {
                 throw new ExceptionInput();
             }
@@ -64,8 +64,6 @@ public class IceCreamShop {
             switch (input) {
                 case 1:
                     iceCreameAbstract.addBoxIceCreamType(BoxIceCreameType.CUP);
-                    iceCreameAbstract.fullPrice();
-                    System.out.println(iceCreameAbstract.fullPrice());
                     loop = false;
                     break;
                 case 2:
@@ -116,7 +114,8 @@ public class IceCreamShop {
             }
         }
     }
-    private  void selectToppintType(IceCreameAbstract iceCreameAbstract){
+
+    private void selectToppintType(IceCreameAbstract iceCreameAbstract) {
         boolean loop = true;
         while (loop) {
 
@@ -175,7 +174,8 @@ public class IceCreamShop {
         }
         iceCreameInfo(surpriseIceCreame);
     }
-    private void extraIceCreame(){
+
+    private void extraIceCreame() {
         ExtraIceCreame extraIceCreame = new ExtraIceCreame();
         selectBoxIceCreame(extraIceCreame);
         selectIceCreameType(extraIceCreame);

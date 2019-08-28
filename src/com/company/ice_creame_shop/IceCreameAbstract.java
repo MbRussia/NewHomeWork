@@ -13,10 +13,6 @@ public class IceCreameAbstract implements IceCreame {
     private BoxIceCreameType boxIceCreameType;
     private IceCreameType iceCreameType;
 
-    public void setBoxIceCreameType(BoxIceCreameType boxIceCreameType) {
-        this.boxIceCreameType = boxIceCreameType;
-    }
-
     public String getBoxIceCreameType() {
         if (boxIceCreameType != null) {
             return boxIceCreameType.name();
@@ -45,8 +41,8 @@ public class IceCreameAbstract implements IceCreame {
         priceIceCreame.setAllPrice(boxIceCreameType.getPrice());
         priceIceCreame.setAllPrice(iceCreameType.getPrice());
         if (!toppings.isEmpty()) {
-            for (int i = 0; i < toppings.size(); i++) {
-                priceIceCreame.setAllPrice(toppings.get(i).getPrice());
+            for (ToppingType topping : toppings) {
+                priceIceCreame.setAllPrice(topping.getPrice());
             }
         }
         return priceIceCreame.getAllPrice();
@@ -67,8 +63,6 @@ public class IceCreameAbstract implements IceCreame {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer();
-        sb.append("Топпинг").append(toppings);
-        return sb.toString();
+        return "Топпинг" + toppings;
     }
 }
